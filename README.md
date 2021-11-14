@@ -6,7 +6,7 @@ This project is part of CodeSpace Project.
 
 ## Tasks
 
-- [x] Your ‘todos’ are going to be objects that you’ll want to dynamically create, which means either using factories or constructors/classes to generate them.
+- [x] The ‘todos’ was going to be objects that I dynamically created, using factories or constructors/classes to generate them.
   - This was made by doing two classes one for Project and another for Task as shown here:
   ```javascript 
         class Project {
@@ -26,8 +26,7 @@ This project is part of CodeSpace Project.
             }
         }
     ```
-- [x] Brainstorm what kind of properties your todo-items are going to have. At a minimum they should have a title, description, dueDate and priority. You might also want to include notes or even a checklist.
-  - It was made by making the two classes and the object ends as an array of objects with this format to be handled by local storage:
+  - The properties which at minimum had a title, description, due date and priority. It was made by making the two classes and the object ends as an array of objects with this format to be handled by local storage:
   ```javascript
     [
         {
