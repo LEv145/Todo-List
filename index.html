@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+</head>
+
+<body>
+    <!--Navbar just text -->
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <span><i class="far fa-calendar-alt"></i></span> To Do List App!
+            </a>
+        </div>
+    </nav>
+    <main class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Projects</h1>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12 col-md-3">
+                    <!--New project button and modal-->
+                    <button type="button" class="btn btn-primary" id="newProjectBtn"><i class="fas fa-plus-circle"></i>
+                        New Project</button>
+                    <!-- new Project Modal -->
+                    <div class="modal fade" id="newProjectModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newProjectModalLabel">New Project</h5>
+                                    <button type="button" class="btn-close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="newProjectForm">
+                                        <div class="form-group">
+                                            <label for="projectTitle">Title of the Project</label>
+                                            <input type="text" class="form-control" id="projectTitle"
+                                                placeholder="Type the name of new Project">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close">Close</button>
+                                    <button type="button" class="btn btn-primary" id="new-project">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger" id="remove-project">
+                        <i class="fas fa-minus-circle"></i>
+                        Remove Project
+                    </button>
+                </div>
+                <div class="col-12 col-md-9">
+                    <button type="button" class="btn btn-primary" id="newTaskBtn">
+                        <i class="far fa-check-circle"></i>
+                        New Task
+                    </button>
+                    <!-- new Task Modal -->
+                    <div class="modal fade" id="newTaskModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newTaskModalLabel">New Task</h5>
+                                    <button type="button" class="btn-close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="newTaskForm">
+                                        <div class="form-group">
+                                            <label for="taskTitle">Title of the Task</label>
+                                            <input type="text" class="form-control" id="taskTitle"
+                                                placeholder="Type the name of new task" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="taskDescription">Description</label>
+                                            <input type="text" class="form-control" id="taskDescription"
+                                                placeholder="Type the description here..." required>
+                                        </div>
+                                        <div class="input-group mb-3 mt-3">
+                                            <label class="input-group-text" for="taskDate">Due Date</label>
+                                            <input type="date" class="form-control" id="taskDate" placeholder="DD/MM/AA"
+                                                required>
+                                        </div>
+                                        <div class="input-group mb-3 mt-3">
+                                            <label class="input-group-text" for="taskPriority">Priority</label>
+                                            <select class="form-select" id="taskPriority">
+                                                <option selected value="low">Low</option>
+                                                <option value="medium">Medium</option>
+                                                <option value="high">High</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close">Close</button>
+                                    <button type="button" class="btn btn-primary" id="new-task" 
+                                        data-bs-dismiss="modal">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <!--Tab list-->
+                    <div class="list-group" id="list-tab">
+                        <!--Render list group table for Projects and tasks-->
+                    </div>
+                </div>
+                <div class="col-12 col-md-9">
+                    <!--Rigth containers-->
+                    <div class="tab-content" id="nav-tabContent">
+                    </div>
+                    <div class="modal fade" id="editTaskModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newTaskModalLabel">Edit Task</h5>
+                                    <button type="button" class="btn-close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="editTaskForm">
+                                        <!--
+                                        <div class="form-group">
+                                            <label for="taskTitle">Title of the Task</label>
+                                            <input type="text" class="form-control" id="taskTitle"
+                                                placeholder="Type the name of new task" required value="Mi nombre">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="taskDescription">Description</label>
+                                            <input type="text" class="form-control" id="taskDescription"
+                                                placeholder="Type the description here..." required>
+                                        </div>
+                                        <div class="input-group mb-3 mt-3">
+                                            <label class="input-group-text" for="taskDate">Due Date</label>
+                                            <input type="date" class="form-control" id="taskDate" placeholder="DD/MM/AA"
+                                                required>
+                                        </div>
+                                        <div class="input-group mb-3 mt-3">
+                                            <label class="input-group-text" for="taskPriority">Priority</label>
+                                            <select class="form-select" id="taskPriority">
+                                                <option selected value="low">Low</option>
+                                                <option value="medium">Medium</option>
+                                                <option value="high">High</option>
+                                            </select>
+                                        </div>
+                                        -->
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close">Close</button>
+                                    <button type="button" class="btn btn-primary" 
+                                        id="edit-task-save" >Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div>
+            <p>Made by <a href="https://github.com/javazz137">Jabulani Ngwenyama</a> - View <a href="https://github.com/javazz137/todo-list">
+                source code <i class="fab fa-github"></i></a></p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
